@@ -2,7 +2,7 @@ package com.company;
 
 import java.util.ArrayList;
 
-public class Engine {
+public class Creator {
     InitializeMenu initializeMenu = new InitializeMenu();
     ArrayList<Pizza> menu;
     Orders orders = new Orders();
