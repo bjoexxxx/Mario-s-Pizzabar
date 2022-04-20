@@ -5,29 +5,42 @@ import java.util.*;
 
 public class Controller {
     Scanner scanner = new Scanner(System.in);
-    Creator engine = new Creator();
-    FileHandler handler = new FileHandler();
+    Creator creator = new Creator();
 
     public String readLine() {
         return scanner.nextLine();
     }
 
+    public void createOrder() {
+        creator.orders.addOrder(new Order("Stefan", UUID.randomUUID(), new Date(), new ArrayList<Pizza>(Arrays.asList(creator.menu.get(0)))));
+    }
+
+    public void deleteOrder() {
+
+    }
+
+    public void commandHandler(String command) {
+        switch (command) {
+            case "create" -> {createOrder();}
+            case "delete" -> {deleteOrder();}
+            case "menu" -> {
+                System.out.println(creator.displayMenu());}
+            case "orders" -> {
+                System.out.println(creator.orders);
+            }
+        }
+    }
+
     public void run() {
 
-        engine.start();
-        engine.orders.addOrder(new Order("Stefan", UUID.randomUUID(), new Date(), new ArrayList<Pizza>(Arrays.asList(engine.menu.get(0)))));
-        engine.orders.addOrder(new Order("Stefan", UUID.randomUUID(), new Date(), new ArrayList<Pizza>(Arrays.asList(engine.menu.get(0), engine.menu.get(1)))));
+        creator.start();
+        creator.orders.addOrder(new Order("Stefan", UUID.randomUUID(), new Date(), new ArrayList<Pizza>(Arrays.asList(creator.menu.get(0), creator.menu.get(1)))));
 
-        try {
-            //handler.removeLine("Hello world");
-            handler.write(engine.orders);
-        } catch (IOException e) {
-            System.out.println("Something went wrong");
+        //System.out.println(creator.orders);
+        boolean isRunning = true;
+        while (isRunning) {
+            String command = readLine();
+            commandHandler(command);
         }
-        System.out.println(engine.orders);
-        //boolean isRunning = true;
-//        while (isRunning) {
-//
-//        }
     }
 }

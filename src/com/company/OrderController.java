@@ -2,11 +2,11 @@ package com.company;
 
 import java.util.ArrayList;
 
-public class Orders {
+public class OrderController {
 
     ArrayList<Order> orderList;
 
-    public Orders() {
+    public OrderController() {
         orderList = new ArrayList<>();
     }
 

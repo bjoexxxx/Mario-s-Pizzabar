@@ -48,6 +48,6 @@ public class Order {
 
     @Override
     public String toString() {
-        return String.format("%s\n\tOrdrenummer: %s\n\nTime: %s\n\tPizza(s):\n\t\t%s", customerName, orderID, date, contentAsString());
+        return String.format("%s\n\tTime: %s\n\tPizza(s):\n\t\t%s", customerName, date, contentAsString());
     }
 }

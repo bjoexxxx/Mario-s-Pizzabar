@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Creator {
     InitializeMenu initializeMenu = new InitializeMenu();
     ArrayList<Pizza> menu;
-    Orders orders = new Orders();
+    OrderController orders = new OrderController();
 
 
     public String displayMenu() {
@@ -17,6 +17,12 @@ public class Creator {
     public void addToOrder(Order order) {
         orders.addOrder(order);
     }
+
+    public void removeOrder(Order order) {
+        orders.removeOrder(order);
+    }
+
+
 
     public void start() {
         menu = initializeMenu.menu();
