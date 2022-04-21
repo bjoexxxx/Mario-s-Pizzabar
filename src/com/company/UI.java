@@ -17,7 +17,7 @@ public class UI {
         System.out.println(menu);
     }
 
-    public void displayOrders(OrderController orders) {
+    public void displayOrders(String orders) {
         System.out.println(orders);
     }
     public void displayCommands(String commands) {

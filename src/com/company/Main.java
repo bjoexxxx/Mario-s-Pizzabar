@@ -3,7 +3,7 @@ package com.company;
 public class Main {
 
     public static void main(String[] args) {
-        Controller controller = new Controller();
+        ApplicationController controller = new ApplicationController();
         controller.run();
     }
 }
