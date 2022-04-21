@@ -14,12 +14,16 @@ public class Creator {
         return builder.toString();
     }
 
-    public void addToOrder(Order order) {
-        orders.addOrder(order);
-    }
-
-    public void removeOrder(Order order) {
-        orders.removeOrder(order);
+    public String displayCommands() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("Commands\n\t");
+        builder.append("Create [customer name] [pickup time] [pizza 1 ID] <Optional [pizza 2 ID] [pizza 3 ID]...>\n\t");
+        builder.append("Delete [orderID]\n\t");
+        builder.append("menu\n\t");
+        builder.append("orders\n\t");
+        builder.append("commands\n\t");
+        builder.append("exit");
+        return builder.toString();
     }
 
 

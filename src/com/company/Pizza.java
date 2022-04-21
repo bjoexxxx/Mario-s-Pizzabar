@@ -1,7 +1,6 @@
 package com.company;
 
 import java.text.NumberFormat;
-import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Pizza {
@@ -16,9 +15,6 @@ public class Pizza {
     this.price = price;
   }
 
-  public int getId() {
-    return this.id;
-  }
 
   private String ingredientsToString() {
     StringBuilder builder = new StringBuilder();

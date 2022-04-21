@@ -1,46 +1,70 @@
 package com.company;
 
-import java.io.IOException;
 import java.util.*;
 
 public class Controller {
     Scanner scanner = new Scanner(System.in);
     Creator creator = new Creator();
-
+    UI ui = new UI();
     public String readLine() {
+        System.out.print(">> ");
         return scanner.nextLine();
     }
 
-    public void createOrder() {
-        creator.orders.addOrder(new Order("Stefan", UUID.randomUUID(), new Date(), new ArrayList<Pizza>(Arrays.asList(creator.menu.get(0)))));
+    public void createOrder(String[] command) {
+        String customerName = command[0];
+        String pickupTime = command[1];
+        String[] pizzaIDs = Arrays.copyOfRange(command, 2, command.length);
+        ArrayList<Pizza> pizzas = new ArrayList<>();
+        for (String id : pizzaIDs) {
+            pizzas.add(creator.menu.get(Integer.parseInt(id)));
+        }
+        creator.orders.addOrder(new Order(customerName, creator.orders.orderList.size()+1, pickupTime, pizzas));
+        ui.successfulOrderCreation(customerName, pickupTime);
     }
 
-    public void deleteOrder() {
-
+    public void deleteOrder(String[] command) {
+        int orderID = Integer.parseInt(command[0]);
+        Order toDelete = creator.orders.orderList.stream().filter(order -> order.getOrderID() == orderID).findFirst().get();
+        creator.orders.removeOrder(toDelete);
+        ui.successfulOrderDeletion(toDelete.getCustomerName(), orderID);
     }
 
-    public void commandHandler(String command) {
-        switch (command) {
-            case "create" -> {createOrder();}
-            case "delete" -> {deleteOrder();}
+    public void commandHandler(String[] command) {
+        switch (command[0]) {
+            case "create" -> {createOrder(Arrays.copyOfRange(command, 1, command.length));}
+            case "delete" -> {deleteOrder(Arrays.copyOfRange(command, 1, command.length));}
             case "menu" -> {
-                System.out.println(creator.displayMenu());}
+                ui.printMenu(creator.displayMenu());
+            }
             case "orders" -> {
-                System.out.println(creator.orders);
+                if (creator.orders.orderList.size() > 0){
+                    ui.displayOrders(creator.orders);
+                }
+            }
+            case "commands" -> {
+                ui.displayCommands(creator.displayCommands());
+            }
+            case "exit" -> {
+                System.exit(1);
+            }
+            default -> {
+                ui.badCommands();
             }
         }
     }
 
+
     public void run() {
-
         creator.start();
-        creator.orders.addOrder(new Order("Stefan", UUID.randomUUID(), new Date(), new ArrayList<Pizza>(Arrays.asList(creator.menu.get(0), creator.menu.get(1)))));
-
-        //System.out.println(creator.orders);
         boolean isRunning = true;
+        System.out.println(creator.displayCommands());
         while (isRunning) {
             String command = readLine();
-            commandHandler(command);
+            commandHandler(command.split(" "));
         }
     }
 }
+
+
+
