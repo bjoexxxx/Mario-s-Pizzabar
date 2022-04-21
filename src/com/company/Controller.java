@@ -35,7 +35,7 @@ public class Controller {
             case "create" -> {createOrder(Arrays.copyOfRange(command, 1, command.length));}
             case "delete" -> {deleteOrder(Arrays.copyOfRange(command, 1, command.length));}
             case "menu" -> {
-                ui.printMenu(creator.displayMenu());
+                ui.printMenu(creator.menu());
             }
             case "orders" -> {
                 if (creator.orders.orderList.size() > 0){
@@ -43,7 +43,7 @@ public class Controller {
                 }
             }
             case "commands" -> {
-                ui.displayCommands(creator.displayCommands());
+                ui.displayCommands(creator.commands());
             }
             case "exit" -> {
                 System.exit(1);
@@ -58,7 +58,7 @@ public class Controller {
     public void run() {
         creator.start();
         boolean isRunning = true;
-        System.out.println(creator.displayCommands());
+        ui.displayCommands(creator.commands());
         while (isRunning) {
             String command = readLine();
             commandHandler(command.split(" "));

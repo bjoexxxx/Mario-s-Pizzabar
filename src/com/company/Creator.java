@@ -8,13 +8,13 @@ public class Creator {
     OrderController orders = new OrderController();
 
 
-    public String displayMenu() {
+    public String menu() {
         StringBuilder builder = new StringBuilder("");
         menu.stream().forEach(pizza -> builder.append(pizza.toString("\n\t") + "\n"));
         return builder.toString();
     }
 
-    public String displayCommands() {
+    public String commands() {
         StringBuilder builder = new StringBuilder();
         builder.append("Commands\n\t");
         builder.append("Create [customer name] [pickup time] [pizza 1 ID] <Optional [pizza 2 ID] [pizza 3 ID]...>\n\t");
