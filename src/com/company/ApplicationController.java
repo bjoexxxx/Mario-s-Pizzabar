@@ -21,7 +21,7 @@ public class ApplicationController {
     }
 
     public void deleteOrder(String[] command) {
-        int orderID = Integer.parseInt(command[0]);
+        String orderID = command[0];
         String customerName = creator.deleteOrder(orderID);
         ui.successfulOrderDeletion(customerName, orderID);
     }

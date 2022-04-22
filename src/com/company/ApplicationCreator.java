@@ -2,6 +2,7 @@ package com.company;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.UUID;
 
 public class ApplicationCreator {
     private InitializeMenu initializeMenu = new InitializeMenu();
@@ -17,17 +18,19 @@ public class ApplicationCreator {
 
     public ArrayList<Pizza> getPizzasFromString(String[] strArr) {
         ArrayList<Pizza> pizzas = new ArrayList<>();
-        Arrays.stream(strArr).forEach(id -> pizzas.add(menu.get(Integer.parseInt(id))));
+        Arrays.stream(strArr).forEach(id -> pizzas.add(menu.get(Integer.parseInt(id)-1)));
         return pizzas;
     }
 
     public boolean makeOrder(String customerName, String pickupTime, String[] pizzaIDs) {
-        orders.addOrder(new Order(customerName, orders.orderList.size()+1, pickupTime, getPizzasFromString(pizzaIDs)));
+        ArrayList<Pizza> pizzas = getPizzasFromString(pizzaIDs);
+        String uuid = UUID.randomUUID().toString().substring(0, 4);
+        orders.addOrder(new Order(customerName, uuid, pickupTime, pizzas));
         return true;
     }
 
-    public String deleteOrder(int orderID) {
-        Order toDelete = orders.orderList.stream().filter(order -> order.getOrderID() == orderID).findFirst().get();
+    public String deleteOrder(String orderID) {
+        Order toDelete = orders.orderList.stream().filter(order -> order.getOrderID().equals(orderID)).findFirst().get();
         orders.removeOrder(toDelete);
         return toDelete.getCustomerName();
     }

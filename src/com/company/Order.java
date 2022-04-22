@@ -4,11 +4,11 @@ import java.util.ArrayList;
 
 public class Order {
     private String customerName;
-    private int orderID;
+    private String orderID;
     private String date;
     private ArrayList<Pizza> content;
 
-    public Order(String customerName, int id, String date, ArrayList<Pizza> content) {
+    public Order(String customerName, String id, String date, ArrayList<Pizza> content) {
         this.customerName = customerName;
         this.orderID = id;
         this.date = date;
@@ -20,7 +20,7 @@ public class Order {
         return this.customerName;
     }
 
-    public int getOrderID() {
+    public String getOrderID() {
         return this.orderID;
     }
 

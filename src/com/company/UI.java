@@ -6,7 +6,7 @@ public class UI {
         System.out.println(String.format(">> Created an order for %s at time %s", name, pickupTme));
     }
 
-    public void successfulOrderDeletion(String name, int orderID) {
+    public void successfulOrderDeletion(String name, String orderID) {
         System.out.println(String.format(">> Deleted order for %s - order number: %s", name, orderID));
     }
     public void badCommands() {
