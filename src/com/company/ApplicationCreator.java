@@ -7,7 +7,7 @@ import java.util.UUID;
 public class ApplicationCreator {
     private InitializeMenu initializeMenu = new InitializeMenu();
     private ArrayList<Pizza> menu;
-    private OrderController orders = new OrderController();
+    private OrderController orderController = new OrderController();
 
 
     public String menu() {
@@ -25,18 +25,19 @@ public class ApplicationCreator {
     public boolean makeOrder(String customerName, String pickupTime, String[] pizzaIDs) {
         ArrayList<Pizza> pizzas = getPizzasFromString(pizzaIDs);
         String uuid = UUID.randomUUID().toString().substring(0, 4);
-        orders.addOrder(new Order(customerName, uuid, pickupTime, pizzas));
+        Order newOrder = new Order(customerName, uuid, pickupTime, pizzas);
+        orderController.addOrder(newOrder);
         return true;
     }
 
     public String deleteOrder(String orderID) {
-        Order toDelete = orders.orderList.stream().filter(order -> order.getOrderID().equals(orderID)).findFirst().get();
-        orders.removeOrder(toDelete);
+        Order toDelete = orderController.getOrderFromID(orderID);
+        orderController.removeOrder(toDelete);
         return toDelete.getCustomerName();
     }
 
     public String orders() {
-        return orders.toString();
+        return orderController.toString();
     }
 
     public String commands() {

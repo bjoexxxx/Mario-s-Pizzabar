@@ -18,6 +18,10 @@ public class OrderController {
         orderList.add(order);
     }
 
+    public Order getOrderFromID(String id) {
+        return orderList.stream().filter(order -> order.getOrderID().equals(id)).findFirst().get();
+    }
+
 
 
     @Override
