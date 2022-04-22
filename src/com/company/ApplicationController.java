@@ -31,13 +31,15 @@ public class ApplicationController {
     }
 
     public void commandHandler(String[] command) {
-        switch (command[0]) {
+        switch (command[0].toLowerCase()) {
             case "create" -> {createOrder(Arrays.copyOfRange(command, 1, command.length));}
             case "delete" -> {deleteOrder(Arrays.copyOfRange(command, 1, command.length));}
             case "menu" -> {ui.printMenu(creator.menu());}
             case "orders" -> {
                 if (!creator.orders().isBlank()){
                     ui.displayOrders(creator.orders());
+                } else {
+                    ui.noCurrentOrders();
                 }
             }
             case "commands" -> {ui.displayCommands(creator.commands());}

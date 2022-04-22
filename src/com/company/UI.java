@@ -23,4 +23,8 @@ public class UI {
     public void displayCommands(String commands) {
         System.out.println(commands);
     }
+
+    public void noCurrentOrders() {
+        System.out.println("There are no current orders!");
+    }
 }

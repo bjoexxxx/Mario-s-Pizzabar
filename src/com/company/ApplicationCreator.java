@@ -42,8 +42,8 @@ public class ApplicationCreator {
     public String commands() {
         StringBuilder builder = new StringBuilder();
         builder.append("Commands\n\t");
-        builder.append("Create [customer name] [pickup time] [pizza 1 ID] <Optional [pizza 2 ID] [pizza 3 ID]...>\n\t");
-        builder.append("Delete [orderID]\n\t");
+        builder.append("create [customer name] [pickup time] [pizza 1 ID] <Optional [pizza 2 ID] [pizza 3 ID]...>\n\t");
+        builder.append("delete [orderID]\n\t");
         builder.append("menu\n\t");
         builder.append("orders\n\t");
         builder.append("commands\n\t");
